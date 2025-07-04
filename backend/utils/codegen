@@ -1,0 +1,47 @@
+const { exec } = require('child_process');
+const path = require('path');
+const fs = require('fs');
+
+async function parseDocxAndGenerateCode(docxPath) {
+  return new Promise((resolve, reject) => {
+    const parserPath = path.join(__dirname, '../scripts/mission_parser.py');
+const generatorPath = path.join(__dirname, '../scripts/c_code_generation.py');
+
+    const jsonPath = path.join(__dirname, '../final_mission_parsing_output.json');
+    const outputPath = path.join(__dirname, '../output/generated_mission_code.c');
+
+    // Step 1: Run mission_parser.py
+    exec(`python "${parserPath}" "${docxPath}"`, (err1, stdout1, stderr1) => {
+      console.log('📄 Parser output:', stdout1);
+      if (err1) {
+        console.error('❌ Parser error:', stderr1 || err1.message);
+        return reject(`Parser error: ${stderr1 || err1.message}`);
+      }
+
+      if (!fs.existsSync(jsonPath)) {
+        return reject('❌ JSON not found after parsing.');
+      }
+
+      // Step 2: Run c_code_generation.py
+      exec(`python "${generatorPath}" "${jsonPath}"`, (err2, stdout2, stderr2) => {
+        console.log('🛠️ Codegen output:', stdout2);
+        if (err2) {
+          console.error('❌ Codegen error:', stderr2 || err2.message);
+          return reject(`Codegen error: ${stderr2 || err2.message}`);
+        }
+
+        // Check final .c file
+        if (!fs.existsSync(outputPath)) {
+          return reject('❌ C file not found after code generation.');
+        }
+
+        resolve({
+          code: stdout2,
+          outputFile: outputPath
+        });
+      });
+    });
+  });
+}
+
+module.exports = { parseDocxAndGenerateCode };
