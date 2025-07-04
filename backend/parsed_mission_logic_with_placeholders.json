@@ -1,0 +1,59 @@
+[
+    {
+        "Event Number": "E1",
+        "time_assignment": "T0",
+        "event_description": "Sensing Avg. Axb > 14:892m/s2 over 4 consecutive samples @ 10 ms",
+        "flags_inside": [
+            "control = 1",
+            "obcStatus = 0"
+        ],
+        "condition1": "condition1forEvent1()  /* Sensing Avg. |Axb|>14:892 (1.2)m/s2 over 4 consecutive samples @ 10 */",
+        "operator1": "*or",
+        "condition2": "MODECODE==1 & NAV2Cmd==1"
+    },
+    {
+        "Event Number": "E2",
+        "time_assignment": "T_sepr",
+        "event_description": "Out-Off-Canister is sensed by 4 OOC sensors and declared using 2/4 logic by OBC. h0 is the Lift off height.",
+        "condition1": "T>=(T0 + 0.900)",
+        "operator1": "**and",
+        "condition2": "processDips1Event2()  /* 3 consecutive samples @ 10 of DIP 00==1 & DIP 01==0 (OOC1) DIP 02==1 & DIP 03==0 (OOC2) DIP 04==1 & DIP 05==0 (OOC3) DIP 06==1 & DIP 07==0 (OOC4) */",
+        "operator2": "**and",
+        "condition3": "(h - h0)>=20",
+        "operator3": "*or",
+        "condition4": "MODECODE==1",
+        "operator4": "**and",
+        "condition5": "T>(T_sepr + 2.000)",
+        "operator5": "**and",
+        "condition6": "F>60",
+        "operator6": "***or",
+        "condition7": "P<60"
+    },
+    {
+        "Event Number": "E3",
+        "time_assignment": "T2",
+        "event_description": "",
+        "flags_inside": [
+            "ctkl = 1"
+        ],
+        "condition1": "T>=(T1 + 0.600)"
+    },
+    {
+        "Event Number": "E4",
+        "time_assignment": "T3",
+        "event_description": "",
+        "condition1": "T>=(T2 + 0.010)"
+    },
+    {
+        "Event Number": "E5",
+        "time_assignment": "T4",
+        "event_description": "",
+        "condition1": "T>=(T3 + 0.180)"
+    },
+    {
+        "Event Number": "E6",
+        "time_assignment": "T6",
+        "event_description": "",
+        "condition1": "T>T_start"
+    }
+]

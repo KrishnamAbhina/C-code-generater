@@ -1,0 +1,7 @@
+Event Number,time_assignment,flags_inside,condition1,operator1,condition2,event_description,operator2,condition3,operator3,condition4,operator4,condition5,operator5,condition6,operator6,condition7
+E1,T0,"['control = 1', 'obcStatus = 0']",Sensing Avg. |Axb|>14:892 (1.2)m/s2 over 4 consecutive samples @ 10,*or,MODECODE==1 & NAV2Cmd==1,Sensing Avg. Axb > 14:892m/s2 over 4 consecutive samples @ 10 ms,,,,,,,,,,
+E2,T_sepr,,T>=(T0 + 0.900),**and,3 consecutive samples @ 10 of DIP 00==1 & DIP 01==0 (OOC1) DIP 02==1 & DIP 03==0 (OOC2) DIP 04==1 & DIP 05==0 (OOC3) DIP 06==1 & DIP 07==0 (OOC4),Out-Off-Canister is sensed by 4 OOC sensors and declared using 2/4 logic by OBC. h0 is the Lift off height.,**and,(h - h0)>=20,*or,MODECODE==1,**and,T>(T_sepr + 2.000),**and,F>60,***or,P<60
+E3,T2,['ctkl = 1'],T>=(T1 + 0.600),,,,,,,,,,,,,
+E4,T3,,T>=(T2 + 0.010),,,,,,,,,,,,,
+E5,T4,,T>=(T3 + 0.180),,,,,,,,,,,,,
+E6,T6,,T>T_start,,,,,,,,,,,,,

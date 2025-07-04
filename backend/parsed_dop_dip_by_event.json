@@ -1,0 +1,48 @@
+[
+  {
+    "busno": "bus_0",
+    "subsys": "ss3",
+    "dop_n": "A10, A9",
+    "dop_r": "B12, B13",
+    "status_n": "ON",
+    "status_r": "ON",
+    "issueNullCommand": "no",
+    "flags": "NIL",
+    "event": "E3"
+  },
+  {
+    "busno": "bus_0",
+    "subsys": "ss3",
+    "dop_n": "A10, A9",
+    "dop_r": "B12, B13",
+    "status_n": "ON",
+    "status_r": "ON",
+    "issueNullCommand": "no",
+    "flags": "NIL",
+    "event": "E4"
+  },
+  {
+    "busno": "bus_0",
+    "subsys": "ss3",
+    "dop_n": "A10, A9",
+    "dop_r": "B12, B13",
+    "status_n": "ON",
+    "status_r": "ON",
+    "issueNullCommand": "no",
+    "flags": "NIL",
+    "event": "E5"
+  },
+  {
+    "busno": "unknown",
+    "subsys": "unknown",
+    "dop_n": "NIL",
+    "dop_r": "NIL",
+    "status_n": "NIL",
+    "status_r": "NIL",
+    "issueNullCommand": "no",
+    "flags": [
+      "Control = 1"
+    ],
+    "event": "E6"
+  }
+]
